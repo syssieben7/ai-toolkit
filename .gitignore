@@ -1,0 +1,7 @@
+results/
+.env
+__pycache__/
+*.pyc
+.opencode/
+.vscode/
+.claude/

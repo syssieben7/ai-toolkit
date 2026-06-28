@@ -1,0 +1,1 @@
+A train travels 60 km in 45 minutes. Average speed in km/h? Number only.

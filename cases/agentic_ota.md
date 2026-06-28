@@ -1,0 +1,1 @@
+Briefly list the ordered steps to OTA-update an ESP32 over the espota (ArduinoOTA) protocol from a host, including the auth handshake and why the host must read the per-chunk ACKs.

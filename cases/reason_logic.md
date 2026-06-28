@@ -1,0 +1,1 @@
+Three boxes (apples / oranges / mixed), every label is WRONG. You may take ONE fruit from ONE box. Which box do you pick to deduce all labels? Box + one-sentence why.

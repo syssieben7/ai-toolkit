@@ -1,0 +1,20 @@
+# ai-toolkit — single source of truth for backends, models, and tool configs.
+# Drives both switch.py (generate/launch tool configs) and bench/run.py (benchmark).
+backends:
+  ollama-mini: { type: ollama,    base: "http://192.168.10.206:11434" }      # Mac Mini (MLX), remote API
+  litellm:     { type: openai,    base: "https://api.llm.vps.guginet.net/v1", key_env: LITELLM_KEY }
+  openrouter:  { type: openai,    base: "https://openrouter.ai/api/v1",        key_env: OPENROUTER_KEY }
+  anthropic:   { type: anthropic, base: "https://api.anthropic.com",           key_env: ANTHROPIC_API_KEY }  # TODO in run.py
+
+models:
+  - { id: mac-coder-mlx, backend: ollama-mini, ref: "qwen3.6:35b-a3b-coding-nvfp4", params: {think: false, temperature: 0, num_predict: 1024}, tags: [code, mlx, fast] }
+  - { id: qwen3-coder,   backend: ollama-mini, ref: "qwen3-coder:30b",              params: {temperature: 0, num_predict: 1024}, tags: [code, robust] }
+  - { id: north-mini,    backend: ollama-mini, ref: "north-mini-code-1.0:mlx-nvfp4", params: {temperature: 0, num_predict: 2048}, tags: [agentic, tools] }
+  - { id: mac-quick,     backend: ollama-mini, ref: "qwen3.5:4b-nvfp4",             params: {think: false, temperature: 0, num_predict: 512}, tags: [small, mlx] }
+  - { id: claude-sonnet, backend: anthropic,   ref: "claude-sonnet-4-6",           params: {temperature: 0, num_predict: 2048}, tags: [frontier, paid] }
+  - { id: or-deepseek,   backend: openrouter,  ref: "deepseek/deepseek-chat",      params: {temperature: 0, num_predict: 2048}, tags: [reasoning, cloud] }
+
+tools:
+  opencode:    { writes: ".opencode/opencode.json" }
+  vscode:      { writes: ".vscode/settings.json", note: "Continue/Cline format — TODO" }
+  claude-code: { writes: ".claude/settings.json", note: "TODO" }

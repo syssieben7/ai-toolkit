@@ -1,0 +1,1 @@
+Extract to STRICT JSON with keys name, version, ports (array of ints): "service caddy v2.11.4 listens on 80 and 443". Output only JSON.

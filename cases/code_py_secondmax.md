@@ -1,0 +1,1 @@
+Write a Python function second_largest(nums) that returns the second-largest DISTINCT value in the list. If there are fewer than two distinct values, return None. Handle duplicates and the empty list. Return only the function definition.

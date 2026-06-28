@@ -1,0 +1,1 @@
+From this text output STRICT JSON with keys name (string), version (string), ports (array of ACTIVE port ints, excluding deprecated ones), tls (boolean): "service gateway, semver 3.4.0-rc1, exposes TCP 443 and 8080, TLS enabled, legacy port 8081 is deprecated". Output only JSON.

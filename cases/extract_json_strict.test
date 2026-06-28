@@ -1,0 +1,1 @@
+{ "grader": "parse_json", "required": ["name", "version", "ports", "tls"] }

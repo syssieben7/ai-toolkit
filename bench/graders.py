@@ -40,7 +40,7 @@ def exec_py(text: str, tests: list, entry: str | None = None) -> dict:
     harness = (
         code
         + "\n\nimport json as _j, sys as _s\n"
-        + "_cases = " + json.dumps(tests) + "\n"
+        + "_cases = _j.loads(" + repr(json.dumps(tests)) + ")\n"  # parse at runtime: null->None, true->True
         + "for _c in _cases:\n"
         + "    _inp, _exp = _c['input'], _c['expected']\n"
         + "    try:\n"

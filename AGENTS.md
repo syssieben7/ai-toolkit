@@ -7,6 +7,7 @@ A model/backend **switcher** + reproducible **benchmark**. `models.yaml` is the 
 - **Mac-Mini model management is via the Ollama HTTP API only** (`/api/pull`, `/api/delete`) — never local CLI (multi-user host, admin-only installs).
 - Keep `models.yaml` the source of truth; everything generates from it. Don't duplicate model lists.
 - temperature:0 + pinned refs for reproducibility. Record provenance on every result.
+- **Python deps go in a repo-local `.venv` only** (`python3 -m venv .venv && .venv/bin/pip install -r requirements.txt`); run via `.venv/bin/python`. Never global/system pip (multi-user Mac, admin-only installs).
 
 ## Working MVP (already runs)
 - `switch.py opencode <model>` writes `.opencode/opencode.json` + launch cmd.

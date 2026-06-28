@@ -17,7 +17,11 @@ A model/backend **switcher** + reproducible **benchmark**. `models.yaml` is the 
 ## TODO (build these out)
 1. **Anthropic backend** in `run.py` (messages API; map usage→tokens; price→cost).
 2. **switch.py: VSCode** (Continue/Cline `settings.json`) and **Claude-Code** (`.claude/settings.json`) generators.
-3. **Better graders** beyond regex: compile/unit-test for code cases (write to /tmp, `cc -c`, run); optional **LLM-judge** (rubric scored by a frontier model) for open-ended cases.
+3. ~~**Better graders** beyond regex~~ — **DONE.** `bench/graders.py`: `exec_py` (runs the
+   model's Python in a temp dir with a 10s timeout, asserts input→expected — no C/gcc),
+   `match_answer` (numeric/substring), `parse_json` (keys). Selected per case via
+   `cases/<name>.test`; `.check` regex is the fallback. Optional **LLM-judge** for open-ended
+   cases is still open (use a local model as judge; claude-sonnet not funded).
 4. **Cost/resource**: add `price_per_mtok` per cloud model; for local, optionally sample Mac GPU/power (asitop/mactop) and host CPU/mem during a run.
 5. **Reproducibility**: pin model **digests**; run each case **N times**, report mean±stdev; record hardware + thermal state.
 6. **Backend-path matrix**: same model via ollama-direct vs litellm vs openrouter — they differ (latency/quant/limits). Add a `paths:` axis.

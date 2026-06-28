@@ -1,0 +1,4 @@
+{ "grader": "exec_py", "entry": "total",
+  "tests": [ {"input": {"a": [1, 2, 3]}, "expected": 6},
+             {"input": {"a": []}, "expected": 0},
+             {"input": {"a": [10]}, "expected": 10} ] }

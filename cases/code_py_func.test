@@ -1,0 +1,5 @@
+{ "grader": "exec_py", "entry": "sum_of_squares",
+  "tests": [ {"input": {"n": 3}, "expected": 14},
+             {"input": {"n": 1}, "expected": 1},
+             {"input": {"n": 0}, "expected": 0},
+             {"input": {"n": 5}, "expected": 55} ] }

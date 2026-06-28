@@ -1,1 +1,0 @@
-Write a production-quality C function: int i2c_read_reg(uint8_t dev, uint8_t reg, uint8_t *out) that reads one 8-bit register over I2C with a 100ms timeout; return 0 on success, -1 on timeout. Code only.

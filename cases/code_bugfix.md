@@ -1,1 +1,0 @@
-Fix ALL bugs and return only corrected C: int sum(int*a,int n){int s;for(int i=0;i<=n;i++)s+=a[i];return s;}

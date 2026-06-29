@@ -41,6 +41,17 @@ No compilation — all graders run with stdlib + the repo `.venv`. Pick one per 
   first `{...}`, `json.loads`, asserts the keys exist.
 - No `.test`? Falls back to `cases/<name>.check` regex. Grader logic lives in `bench/graders.py`.
 
+## Hosted models & the dashboard
+- **Local models** (`ollama-mini` backend) hit the Mac Mini directly — no key.
+- **Hosted models** (`litellm` backend: `gw-llama70b`, `gw-mistral-med`, `gw-deepseek-free`) route
+  through the litellm gateway and need `LITELLM_KEY` in the env. Paid ones bill; `price_per_mtok`
+  in `models.yaml` drives the cost column. The free tier works but can be very slow (OpenRouter queue).
+- **Path axis:** `qwen3-coder` (ollama-direct) vs `qwen3-coder-gw` (same model via the gateway) —
+  compare routes/overhead. Add any model as one `models.yaml` line; everything auto-discovers.
+- **`bench/report.py` → `reports/index.html`** (self-contained, open offline): per-metric winner (★),
+  quality-vs-latency scatter, per-case grid, **model/case filters**, history trends, and a **scan**
+  dropdown to replay any past run. History persists in `reports/history.jsonl` (survives clearing `results/`).
+
 ## Hand to OpenCode
 Open this repo in OpenCode and point it at `AGENTS.md` — it lists exactly what to extend
 (VSCode/Claude-Code config gen, Anthropic backend, LLM-judge/compile graders, cost prices,

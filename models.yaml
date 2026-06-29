@@ -11,8 +11,16 @@ models:
   - { id: qwen3-coder,   backend: ollama-mini, ref: "qwen3-coder:30b",              params: {temperature: 0, num_predict: 1024}, tags: [code, robust] }
   - { id: north-mini,    backend: ollama-mini, ref: "north-mini-code-1.0:mlx-nvfp4", params: {temperature: 0, num_predict: 2048}, tags: [agentic, tools] }
   - { id: mac-quick,     backend: ollama-mini, ref: "qwen3.5:4b-nvfp4",             params: {think: false, temperature: 0, num_predict: 512}, tags: [small, mlx] }
-  - { id: claude-sonnet, backend: anthropic,   ref: "claude-sonnet-4-6",           params: {temperature: 0, num_predict: 2048}, tags: [frontier, paid] }
+  - { id: claude-sonnet, backend: anthropic,   ref: "claude-sonnet-4-6",           params: {temperature: 0, num_predict: 2048}, price_per_mtok: 15.0, tags: [frontier, paid] }
   - { id: or-deepseek,   backend: openrouter,  ref: "deepseek/deepseek-chat",      params: {temperature: 0, num_predict: 2048}, tags: [reasoning, cloud] }
+
+  # --- hosted, routed through the litellm gateway (local-vs-hosted compare; cost becomes real) ---
+  # price_per_mtok = approx OUTPUT $/M tokens for the relative cost column; edit to taste.
+  - { id: gw-llama70b,     backend: litellm, ref: "openrouter-llama-70b-paid", params: {temperature: 0, num_predict: 1024}, price_per_mtok: 0.4, tags: [hosted, paid, cloud] }
+  - { id: gw-mistral-med,  backend: litellm, ref: "mistral-medium",            params: {temperature: 0, num_predict: 1024}, price_per_mtok: 2.0, tags: [hosted, paid, cloud] }
+  - { id: gw-deepseek-free,backend: litellm, ref: "openrouter-deepseek",       params: {temperature: 0, num_predict: 1024}, price_per_mtok: 0.0, tags: [hosted, free, cloud] }
+  # --- path axis: SAME Mini model (qwen3-coder:30b) but via the gateway vs ollama-direct above ---
+  - { id: qwen3-coder-gw,  backend: litellm, ref: "mac-coder-max",             params: {temperature: 0, num_predict: 1024}, price_per_mtok: 0.0, tags: [code, path-litellm] }
 
 tools:
   opencode:    { writes: ".opencode/opencode.json" }

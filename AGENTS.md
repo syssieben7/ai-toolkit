@@ -22,9 +22,12 @@ A model/backend **switcher** + reproducible **benchmark**. `models.yaml` is the 
    `match_answer` (numeric/substring), `parse_json` (keys). Selected per case via
    `cases/<name>.test`; `.check` regex is the fallback. Optional **LLM-judge** for open-ended
    cases is still open (use a local model as judge; claude-sonnet not funded).
-4. **Cost/resource**: add `price_per_mtok` per cloud model; for local, optionally sample Mac GPU/power (asitop/mactop) and host CPU/mem during a run.
+4. **Cost/resource**: `price_per_mtok` per cloud model **DONE** (cost column live for hosted).
+   Still open: sample Mac GPU/power (asitop/mactop) + host CPU/mem during a run.
 5. **Reproducibility**: pin model **digests**; run each case **N times**, report mean±stdev; record hardware + thermal state.
-6. **Backend-path matrix**: same model via ollama-direct vs litellm vs openrouter — they differ (latency/quant/limits). Add a `paths:` axis.
+6. ~~**Backend-path matrix**~~ — **DONE (config-driven).** `qwen3-coder` (ollama-direct) vs
+   `qwen3-coder-gw` (same model via litellm gateway) as distinct model rows; add any path as a
+   `models.yaml` line. Hosted models (`gw-llama70b`/`gw-mistral-med`/`gw-deepseek-free`) added too.
 7. **Tool/agent macro-bench** (separate from model micro-bench): a fixed mini-repo task ("implement feature, make tests pass") run via OpenCode/Claude-Code/VSCode-agent; measure **pass@1 + wall + $ + tokens** over N runs.
 8. **Dashboard section**: `report.py` already writes `~/monitoring/reports/bench-latest.json`; add a "Model Benchmarks" section to the VPS `monitoring/generate-dashboard.sh` rendering it.
 9. **Domain cases**: add real node-fleet/firmware/automation tasks as eval cases.
